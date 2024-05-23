@@ -1,23 +1,51 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+
+import "./App.css";
+
+import "./styles.css";
+
+import { Route, Routes } from "react-router-dom";
+
+import { Layout } from "./components/UI/layout";
+
+import HomePage from "./components/home";
+
+import Contact from "./components/contact";
+
+import SignIn from "./components/signIn";
+
+import SignUp from "./components/signUp";
+
+import GetVenueSpecific from "./components/specific";
+
+import Profile from "./components/profile";
+
+export function Home() {
+  return (
+    <main>
+      <HomePage />
+    </main>
+  );
+}
+
+function RouteNotFound() {
+  return <div>Page not found</div>;
+}
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/signIn" element={<SignIn />} />
+          <Route path="/signUp" element={<SignUp />} />
+          <Route path="/venue/:id" element={<GetVenueSpecific />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="*" element={<RouteNotFound />} />
+        </Route>
+      </Routes>
     </div>
   );
 }
