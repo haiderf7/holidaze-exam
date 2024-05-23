@@ -50,7 +50,8 @@ function GetVenueSpecific() {
     return (
         <div className="specificContainer">
             <h2>{venue.name}</h2>
-            <img src={venue.media} alt={venue.name} className="specificVenueImage" />
+            <img src={venue.media} alt={venue.name || 'Venue image'} className="specificVenueImage"
+            />
             <p className="venueDescription">{venue.description}</p>
             <p className="venueInfo">
                 Price: <span className="venuePrice">{venue.price}$</span>
