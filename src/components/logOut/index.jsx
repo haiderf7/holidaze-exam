@@ -4,11 +4,11 @@ import { Button, Container } from "react-bootstrap";
 export function HandleTheLogout() {
     const handleTheLogout = () => {
         console.log("Logout button clicked"); // Debugging log
-        const token = localStorage.getItem("accessToken");
+        const token = localStorage.getItem("token");
         console.log("Current accessToken:", token); // Debugging log
 
         if (token) {
-            localStorage.removeItem("accessToken");
+            localStorage.removeItem("token");
             console.log("Token removed from localStorage"); // Debugging log
         } else {
             console.log("No token found in localStorage"); // Debugging log
