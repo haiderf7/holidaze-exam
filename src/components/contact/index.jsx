@@ -1,33 +1,29 @@
 import React from "react";
-
 import { useForm } from "react-hook-form";
-
 import { yupResolver } from "@hookform/resolvers/yup";
-
 import * as yup from "yup";
-
 import { Container, Button } from "react-bootstrap";
 
 const schema = yup
     .object({
         fullName: yup
             .string()
-            .min(3, "Your full name should be at least 4 characters.")
-            .max(15, "Your full name cannot be longer than 10 characters.")
+            .min(3, "Your full name should be at least 3 characters.")
+            .max(15, "Your full name cannot be longer than 15 characters.")
             .required("Please enter your full name"),
         email: yup
             .string()
-            .min(3, "Must be a valid email address")
-            .required("Please enter your mail"),
+            .email("Must be a valid email address")
+            .required("Please enter your email"),
         subject: yup
             .string()
-            .min(3, "Your subject name should be at least 10 characters.")
+            .min(10, "Your subject should be at least 10 characters.")
             .max(20, "Your subject cannot be longer than 20 characters.")
             .required("Please enter your subject"),
         body: yup
             .string()
-            .min(3, "Your body should be at least 10 characters.")
-            .max(50, "Your body cannot be longer than 40 characters.")
+            .min(10, "Your body should be at least 10 characters.")
+            .max(50, "Your body cannot be longer than 50 characters.")
             .required("Please enter your body"),
     })
     .required();
@@ -43,6 +39,7 @@ export function Contact() {
 
     function onSubmit(data) {
         console.log(data);
+        alert("Message sent successfully!");
     }
 
     return (
@@ -79,7 +76,7 @@ export function Contact() {
                 <label className="labelStyle" htmlFor="body">
                     Body
                 </label>
-                <input
+                <textarea
                     className="form-control"
                     {...register("body")}
                     placeholder="Enter body"
@@ -91,7 +88,6 @@ export function Contact() {
             </form>
         </Container>
     );
-
 }
 
 export default Contact;
