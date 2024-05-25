@@ -36,9 +36,7 @@ export function Nav() {
                     <Link to="/profile">Profile</Link>
                 </li>
                 <li>
-                    <Link to="/signIn" onClick={HandleTheLogout}>
-                        Logout
-                    </Link>
+                    <HandleTheLogout />
                 </li>
             </ul>
         </nav>

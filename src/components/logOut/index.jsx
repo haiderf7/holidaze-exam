@@ -1,7 +1,9 @@
 import React from 'react';
-import { Button, Container } from "react-bootstrap";
 
-export function HandleTheLogout() {
+import { Link } from "react-router-dom";
+
+
+export function HandleTheLogout({ isNav = false }) {
     const handleTheLogout = () => {
         console.log("Logout button clicked"); // Debugging log
         const token = localStorage.getItem("token");
@@ -19,11 +21,10 @@ export function HandleTheLogout() {
     };
 
     return (
-        <Container>
-            <Button variant="primary" onClick={handleTheLogout} aria-label="Logout">
-                Logout
-            </Button>
-        </Container>
+        <Link variant="primary" onClick={handleTheLogout} aria-label="Logout">
+            Logout
+        </Link>
+
     );
 }
 
