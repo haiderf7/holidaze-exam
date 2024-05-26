@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import { Container, Form, Button } from "react-bootstrap";
 
 const API_REGISTER = "https://api.noroff.dev/api/v1/holidaze/auth/register";
@@ -7,6 +6,7 @@ const API_REGISTER = "https://api.noroff.dev/api/v1/holidaze/auth/register";
 export function SignUp() {
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
+    const [isSuccess, setIsSuccess] = useState(false);
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -18,8 +18,9 @@ export function SignUp() {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        // Clear any previous error messages
+        // Clear any previous error and success messages
         setIsError(false);
+        setIsSuccess(false);
 
         // Check if name is empty
         if (formData.name.trim() === "") {
@@ -53,7 +54,18 @@ export function SignUp() {
                 }),
             });
             const json = await response.json();
-            console.log(json); // Log the response data
+            if (response.ok) {
+                setIsSuccess(true);
+                setFormData({
+                    name: "",
+                    email: "",
+                    password: "",
+                    avatar: "",
+                    venueManager: "",
+                });
+            } else {
+                setIsError(json.message || "Registration failed");
+            }
             setIsLoading(false);
         } catch (error) {
             setIsLoading(false);
@@ -158,8 +170,14 @@ export function SignUp() {
                 <Button className="submit-btn" variant="primary" type="submit">
                     Register
                 </Button>
+                {isLoading && <div>Loading data</div>}
+                {isError && <div style={{ color: 'red' }}>{isError}</div>}
+                {isSuccess && (
+                    <div style={{ color: 'green', marginTop: '10px' }}>
+                        User registered successfully! You can now sign in.
+                    </div>
+                )}
             </Form>
-            {isLoading && <div>Loading data</div>}
         </Container>
     );
 }

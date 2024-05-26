@@ -1,16 +1,12 @@
 import React, { useState, useEffect } from "react";
-
 import { useParams } from "react-router-dom";
-
 import "react-datepicker/dist/react-datepicker.css";
-
 import DeleteVenue from "../delete";
-
 import UpdateVenue from "../update";
-
 import CalenderBooking from "../calenderBooking";
 
 const API_SPECIFIC_URL = "https://api.noroff.dev/api/v1/holidaze/venues";
+const fallbackImage = "https://images.pexels.com/photos/459225/pexels-photo-459225.jpeg?cs=srgb&dl=daylight-environment-forest-459225.jpg&fm=jpg";
 
 function GetVenueSpecific() {
     const { id } = useParams();
@@ -50,7 +46,12 @@ function GetVenueSpecific() {
     return (
         <div className="specificContainer">
             <h2>{venue.name}</h2>
-            <img src={venue.media} alt={venue.name || 'Venue image'} className="specificVenueImage"
+            {/* Use onError to handle broken or missing images */}
+            <img
+                src={venue.media}
+                onError={(e) => { e.target.src = fallbackImage }}
+                alt={venue.name || 'Venue image'}
+                className="specificVenueImage"
             />
             <p className="venueDescription">{venue.description}</p>
             <p className="venueInfo">

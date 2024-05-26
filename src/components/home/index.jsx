@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useCallback } from "react";
-
 import { Link } from "react-router-dom";
 
 export const API_BASE_URL = "https://api.noroff.dev/api/v1/holidaze/venues";
@@ -48,6 +47,9 @@ function GetVenues() {
         }
     };
 
+    // Fallback image URL
+    const fallbackImage = "https://images.pexels.com/photos/459225/pexels-photo-459225.jpeg?cs=srgb&dl=daylight-environment-forest-459225.jpg&fm=jpg";
+
     return (
         <div>
             <div className="searchContainer">
@@ -68,7 +70,13 @@ function GetVenues() {
                     <Link key={venue.id} to={`/venue/${venue.id}`} className="venueLink">
                         <div className="venue">
                             <h2>{venue.name}</h2>
-                            <img src={venue.media} alt={venue.name} className="venueImage" />
+                            {/* Use onError to handle broken or missing images */}
+                            <img
+                                src={venue.media}
+                                onError={(e) => { e.target.src = fallbackImage }}
+                                alt={venue.name}
+                                className="venueImage"
+                            />
                             <p className="venueDescription">{venue.description}</p>
                             <p className="venueInfo">
                                 Price: <span className="venuePrice">{venue.price}$</span>
