@@ -1,6 +1,6 @@
 # Holidaze
 
-![portfolio-holidaze-imge] https://github.com/haiderf7/holidaze-exam.git
+![portfolio-holidaze-imge] src/Holidaze-img.png
 
 This is a site where a user can find many different venues which you can book as a user. Or you can log in as a venue manager where you can create your own venue, delete it or edit it as you want.
 
