@@ -63,7 +63,7 @@ This is where you can find me and contact me:
 
 MIT License
 
-Copyright (c) [2023] [Kardo Kiyani]
+Copyright (c) [2024] [Haider Fahim Hashem]
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
